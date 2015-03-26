@@ -37,7 +37,7 @@
     "multiline": "1.0.1",
     "newrelic": "1.16.1",
     "node-uuid": "1.4.1",
-    "nodemailer": "0.3.43",
+    "nodemailer": "1.0",
     "passport": "0.1.18",
     "passport-github": "0.1.5",
     "pm2": "0.12.7",

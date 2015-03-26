@@ -2,7 +2,7 @@ var mailer = require('nodemailer');
 var config = require('../config');
 var util = require('util');
 
-var transport = mailer.createTransport('SMTP', config.mail_opts);
+var transport = mailer.createTransport(config.mail_opts);
 var SITE_ROOT_URL = 'http://' + config.host;
 
 /**
