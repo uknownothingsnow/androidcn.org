@@ -130,22 +130,13 @@
       <% } %>
     </div>
     <div class='inner topic'>
-
       <div class='topic_content'>
         <%- markdown(topic.linkedContent) %>
       </div>
-      <div class="share">
-        <!-- JiaThis Button BEGIN -->
-        <div class="jiathis_style_24x24">
-          <a class="jiathis_button_qzone"></a>
-          <a class="jiathis_button_tsina"></a>
-          <a class="jiathis_button_tqq"></a>
-          <a class="jiathis_button_weixin"></a>
-          <a class="jiathis_button_renren"></a>
-          <a class="jiathis_counter_style"></a>
-        </div>
-        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-        <!-- JiaThis Button END -->
+
+      <div class="bdsharebuttonbox" style="height: 20px;">
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
       </div>
     </div>
   </div>
@@ -476,4 +467,9 @@
     });
   });
   // END 点赞
+</script>
+
+<script>
+  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["tsina","youdao","twi"],"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{},"image":{"viewList":["tsina","twi"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","twi"]}};
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>
