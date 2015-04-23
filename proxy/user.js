@@ -31,6 +31,18 @@ exports.getUserByLoginName = function (loginName, callback) {
 };
 
 /**
+ * 根据昵称查找用户
+ * Callback:
+ * - err, 数据库异常
+ * - user, 用户
+ * @param {String} nickname 登录名
+ * @param {Function} callback 回调函数
+ */
+exports.getUserByNickname = function (nickname, callback) {
+  User.findOne({'nickname': nickname}, callback);
+};
+
+/**
  * 根据用户ID，查找用户
  * Callback:
  * - err, 数据库异常
@@ -92,10 +104,11 @@ exports.getUserByNameAndKey = function (loginname, key, callback) {
   User.findOne({loginname: loginname, retrieve_key: key}, callback);
 };
 
-exports.newAndSave = function (name, loginname, pass, email, avatar_url, active, callback) {
+exports.newAndSave = function (name, loginname, nickname, pass, email, avatar_url, active, callback) {
   var user = new User();
   user.name = loginname;
   user.loginname = loginname;
+  user.nickname = nickname;
   user.pass = pass;
   user.email = email;
   user.avatar = avatar_url;

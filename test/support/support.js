@@ -13,13 +13,13 @@ function randomInt() {
 var createUser = exports.createUser = function (callback) {
   var key = new Date().getTime() + '_' + randomInt();
   tools.bhash('pass', function (err, passhash) {
-    User.newAndSave('alsotang' + key, 'alsotang' + key, passhash, 'alsotang' + key + '@gmail.com', '', false, callback);
+    User.newAndSave('alsotang' + key, 'alsotang' + key, "大头鬼", passhash, 'alsotang' + key + '@gmail.com', '', false, callback);
   });
 };
 
-exports.createUserByNameAndPwd = function (loginname, pwd, callback) {
+exports.createUserByNameAndPwd = function (loginname, nickname, pwd, callback) {
   tools.bhash(pwd, function (err, passhash) {
-    User.newAndSave(loginname, loginname, passhash, loginname + +new Date() + '@gmail.com', '', true, callback);
+    User.newAndSave(loginname, loginname, nickname, passhash, loginname + +new Date() + '@gmail.com', '', true, callback);
   });
 };
 

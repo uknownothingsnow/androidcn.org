@@ -142,7 +142,7 @@ describe('test/controllers/github.test.js', function () {
     it('should link a old user', function (done) {
       var username = 'alsotang' + +new Date();
       var pass = 'hehe';
-      support.createUserByNameAndPwd(username, pass, function (user) {
+      support.createUserByNameAndPwd(username, '大头鬼', pass, function (user) {
         request.post('/auth/github/test_create')
           .send({name: username, pass: pass, githubName: username})
           .end(function (err, res) {

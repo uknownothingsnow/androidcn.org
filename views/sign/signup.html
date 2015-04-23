@@ -33,6 +33,17 @@
           </div>
         </div>
         <div class='control-group'>
+          <label class='control-label' for='nickname'>昵称</label>
+
+          <div class='controls'>
+            <% if (typeof(nickname) !== 'undefined') { %>
+            <input class='input-xlarge' id='nickname' name='nickname' size='30' type='text' value='<%= nickname %>'/>
+            <% } else { %>
+            <input class='input-xlarge' id='nickname' name='nickname' size='30' type='text' value=''/>
+            <% } %>
+          </div>
+        </div>
+        <div class='control-group'>
           <label class='control-label' for='pass'>密码</label>
 
           <div class='controls'>

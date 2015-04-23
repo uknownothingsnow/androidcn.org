@@ -46,6 +46,10 @@ exports.create = function (req, res, next) {
   var profile = req.session.profile;
   var isnew = req.body.isnew;
   var loginname = validator.trim(req.body.name).toLowerCase();
+  var nickname = validator.trim(req.body.nickname);
+  if (nickname.length == 0) {
+    nickname = loginname;
+  }
   var password = validator.trim(req.body.pass);
   var ep = new eventproxy();
   ep.fail(next);
@@ -57,6 +61,7 @@ exports.create = function (req, res, next) {
   if (isnew) { // 注册新账号
     var user = new User({
       loginname: profile.username,
+      nickname: profile.nickname,
       pass: profile.accessToken,
       email: profile.emails[0].value,
       avatar: profile._json.avatar_url,
@@ -76,7 +81,7 @@ exports.create = function (req, res, next) {
           }
           if (err.err.indexOf('users.$loginname') !== -1) {
             return res.status(500)
-              .send('您 GitHub 账号的用户名与之前在 CNodejs 注册的用户名重复了');
+              .send('您 GitHub 账号的用户名与之前在 AndroidCN 注册的用户名重复了');
           }
         }
         return next(err);

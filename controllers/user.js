@@ -102,6 +102,7 @@ exports.setting = function (req, res, next) {
     data = data || req.body;
     var data2 = {
       loginname: data.loginname,
+      nickname: data.nickname,
       email: data.email,
       url: data.url,
       location: data.location,
@@ -129,8 +130,23 @@ exports.setting = function (req, res, next) {
     var signature = validator.trim(req.body.signature);
     signature = validator.escape(signature);
 
+    var nickname = validator.trim(req.body.nickname);
+    if (!req.session.user.nickname) {
+      if (nickname.length == 0) {
+        return showMessage("昵称不能为空!", req.session.user);
+      }
+      User.getUserByNickname({nickname: nickname}, function(user) {
+        if (user) {
+          return showMessage("昵称已经存在，请换一个昵称！", req.session.user);
+        }
+      });
+    }
+
     User.getUserById(req.session.user._id, ep.done(function (user) {
       user.url = url;
+      if (!user.nickname) {
+        user.nickname = nickname;
+      }
       user.location = location;
       user.signature = signature;
       user.weibo = weibo;

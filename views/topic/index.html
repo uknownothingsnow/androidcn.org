@@ -66,7 +66,7 @@
           发布于 <%= topic.friendly_create_at %>
         </span>
         <span>
-          作者 <a href="/user/<%= topic.author.loginname %>"><%= topic.author.loginname %></a>
+          作者 <a href="/user/<%= topic.author.loginname %>"><%= topic.author.nickname ? topic.author.nickname : topic.author.loginname %></a>
         </span>
         <span>
           <%= topic.visit_count %> 次浏览
@@ -473,3 +473,5 @@
   window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["tsina","youdao","twi"],"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{},"image":{"viewList":["tsina","twi"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","twi"]}};
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["tsina"],"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{},"image":{"viewList":["tsina","twi"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>

@@ -16,6 +16,7 @@ exports.showSignup = function (req, res) {
 
 exports.signup = function (req, res, next) {
   var loginname = validator.trim(req.body.loginname).toLowerCase();
+  var nickname = validator.trim(req.body.nickname);
   var email = validator.trim(req.body.email).toLowerCase();
   var pass = validator.trim(req.body.pass);
   var rePass = validator.trim(req.body.re_pass);
@@ -27,8 +28,12 @@ exports.signup = function (req, res, next) {
     res.render('sign/signup', {error: msg, loginname: loginname, email: email});
   });
 
+  if (nickname.length == 0) {
+    nickname = loginname;
+  }
+
   // 验证信息的正确性
-  if ([loginname, pass, rePass, email].some(function (item) { return item === ''; })) {
+  if ([loginname, nickname, pass, rePass, email].some(function (item) { return item === ''; })) {
     ep.emit('prop_err', '信息不完整。');
     return;
   }
@@ -50,20 +55,36 @@ exports.signup = function (req, res, next) {
 
   User.getUsersByQuery({'$or': [
     {'loginname': loginname},
+    {'nickname': nickname},
     {'email': email}
   ]}, {}, function (err, users) {
     if (err) {
       return next(err);
     }
     if (users.length > 0) {
-      ep.emit('prop_err', '用户名或邮箱已被使用。');
+      users.forEach(function(user) {
+        if (user.loginname == loginname) {
+          ep.emit('prop_err', '用户名已被使用。');
+          return;
+        }
+
+        if (user.nickname == nickname) {
+          ep.emit('prop_err', '昵称已被使用。');
+          return;
+        }
+
+        if (user.email == email) {
+          ep.emit('prop_err', '邮箱已被使用。');
+          return;
+        }
+      });
       return;
     }
 
     tools.bhash(pass, ep.done(function (passhash) {
       // create gravatar
       var avatarUrl = User.makeGravatar(email);
-      User.newAndSave(loginname, loginname, passhash, email, avatarUrl, false, function (err) {
+      User.newAndSave(loginname, loginname, nickname, passhash, email, avatarUrl, false, function (err) {
         if (err) {
           return next(err);
         }

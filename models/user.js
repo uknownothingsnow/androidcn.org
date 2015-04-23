@@ -5,6 +5,7 @@ var utility = require('utility');
 var UserSchema = new Schema({
   name: { type: String},
   loginname: { type: String},
+  nickname: {type: String},
   pass: { type: String },
   email: { type: String},
   url: { type: String },

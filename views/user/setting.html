@@ -30,6 +30,14 @@
           </div>
         </div>
         <div class='control-group'>
+          <label class='control-label' for='nickname'>昵称</label>
+
+          <div class='controls'>
+            <input class='input-xlarge <%= nickname ? 'readonly' : '' %>' id='nickname' name='nickname' size='30' type='text' <%= nickname ? "readonly='true'" : '' %>
+                   value="<%= typeof(nickname) !== 'undefined' ? nickname : '' %>"/>
+          </div>
+        </div>
+        <div class='control-group'>
           <label class='control-label' for='email'>电子邮件</label>
 
           <div class='controls'>
@@ -60,7 +68,7 @@
 
           <div class='controls'>
             <input class='input-xlarge' id='weibo' name='weibo' size='30' type='text' value="<%= typeof(weibo) !== 'undefined' ? weibo : '' %>"
-                   placeholder="e.g. http://weibo.com/cnodejs"/>
+                   placeholder="e.g. http://weibo.com/brucefromsdu"/>
           </div>
         </div>
         <div class='control-group'>
@@ -69,7 +77,7 @@
           <div class='controls'>
             <input class='input-xlarge' id='github' name='github' size='30' type='text'
                    value="<%= typeof(githubUsername) !== 'undefined' ? '@' + githubUsername : '' %>" placeholder="@username" readonly="readonly" />
-            <p>请通过 GitHub 登陆 CNode 来修改此处</p>
+            <p>请通过 GitHub 登陆 AndroidCN 来修改此处</p>
           </div>
         </div>
         <div class='control-group'>
