@@ -17,6 +17,7 @@ exports.showSignup = function (req, res) {
 exports.signup = function (req, res, next) {
   var loginname = validator.trim(req.body.loginname).toLowerCase();
   var nickname = validator.trim(req.body.nickname);
+  var avatar = validator.trim(req.body.avatar);
   var email = validator.trim(req.body.email).toLowerCase();
   var pass = validator.trim(req.body.pass);
   var rePass = validator.trim(req.body.re_pass);
@@ -83,7 +84,7 @@ exports.signup = function (req, res, next) {
 
     tools.bhash(pass, ep.done(function (passhash) {
       // create gravatar
-      var avatarUrl = User.makeGravatar(email);
+      var avatarUrl = avatar ? avatar : User.makeGravatar(email);
       User.newAndSave(loginname, loginname, nickname, passhash, email, avatarUrl, false, function (err) {
         if (err) {
           return next(err);

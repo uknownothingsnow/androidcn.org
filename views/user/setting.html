@@ -44,7 +44,14 @@
             <input class='input-xlarge readonly' id='email' name='email' size='30' type='text'
                    readonly='true' value="<%= email %>"/>
 
-            <p>同时决定了 Gravatar 头像</p>
+            <p>如果没有设置头像url，则使用邮箱决定 Gravatar 头像</p>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='avatar'>头像</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' id='avatar' name='avatar' size='30' type='text' value="<%= typeof(avatar) !== 'undefined' ? avatar : '' %>"/>
           </div>
         </div>
         <div class='control-group'>

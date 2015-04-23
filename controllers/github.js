@@ -47,6 +47,7 @@ exports.create = function (req, res, next) {
   var isnew = req.body.isnew;
   var loginname = validator.trim(req.body.name).toLowerCase();
   var nickname = validator.trim(req.body.nickname);
+  var avatar = validator.trim(req.body.avatar);
   if (nickname.length == 0) {
     nickname = loginname;
   }
@@ -64,7 +65,7 @@ exports.create = function (req, res, next) {
       nickname: profile.nickname,
       pass: profile.accessToken,
       email: profile.emails[0].value,
-      avatar: profile._json.avatar_url,
+      avatar: avatar,
       githubId: profile.id,
       githubUsername: profile.username,
       githubAccessToken: profile.accessToken,

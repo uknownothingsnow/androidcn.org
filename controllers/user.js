@@ -123,6 +123,7 @@ exports.setting = function (req, res, next) {
   if (action === 'change_setting') {
     var url = validator.trim(req.body.url);
     url = validator.escape(url);
+    var avatar = validator.trim(req.body.avatar);
     var location = validator.trim(req.body.location);
     location = validator.escape(location);
     var weibo = validator.trim(req.body.weibo);
@@ -147,6 +148,7 @@ exports.setting = function (req, res, next) {
       if (!user.nickname) {
         user.nickname = nickname;
       }
+      user.avatar = avatar;
       user.location = location;
       user.signature = signature;
       user.weibo = weibo;

@@ -44,6 +44,17 @@
           </div>
         </div>
         <div class='control-group'>
+          <label class='control-label' for='nickname'>头像</label>
+
+          <div class='controls'>
+            <% if (typeof(avatar) !== 'undefined') { %>
+            <input class='input-xlarge' id='avatar' name='avatar' size='30' type='text' value='<%= avatar %>'/>
+            <% } else { %>
+            <input class='input-xlarge' id='avatar' name='avatar' size='30' type='text' value=''/>
+            <% } %>
+          </div>
+        </div>
+        <div class='control-group'>
           <label class='control-label' for='pass'>密码</label>
 
           <div class='controls'>
