@@ -19,6 +19,21 @@ exports.getUsersByNames = function (names, callback) {
 };
 
 /**
+ * 根据用户名列表查找用户列表
+ * Callback:
+ * - err, 数据库异常
+ * - users, 用户列表
+ * @param {Array} nicknames 用户名列表
+ * @param {Function} callback 回调函数
+ */
+exports.getUsersByNicknames = function (nicknames, callback) {
+  if (nicknames.length === 0) {
+    return callback(null, []);
+  }
+  User.find({ nickname: { $in: nicknames } }, callback);
+};
+
+/**
  * 根据登录名查找用户
  * Callback:
  * - err, 数据库异常
