@@ -8,7 +8,7 @@
       <img src="<%= reply.author.avatar_url %>" title="<%= reply.author.loginname %>"/></a>
 
     <div class='user_info'>
-      <a class='dark reply_author' href="/user/<%= reply.author.loginname %>"><%= replay.author.nickname ? reply.author.nickname : reply.author.loginname %>
+      <a class='dark reply_author' href="/user/<%= reply.author.loginname %>"><%= reply.author.nickname ? reply.author.nickname : reply.author.loginname %>
       </a>
       <a class="reply_time" href="#<%= reply._id %>"><%= indexInCollection + 1 %>楼•<%= reply.friendly_create_at
         %></a>
