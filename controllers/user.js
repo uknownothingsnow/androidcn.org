@@ -132,34 +132,30 @@ exports.setting = function (req, res, next) {
     signature = validator.escape(signature);
 
     var nickname = validator.trim(req.body.nickname);
-    if (!req.session.user.nickname) {
-      if (nickname.length == 0) {
-        return showMessage("昵称不能为空!", req.session.user);
-      }
-      User.getUserByNickname({nickname: nickname}, function(user) {
-        if (user) {
-          return showMessage("昵称已经存在，请换一个昵称！", req.session.user);
-        }
-      });
+    if (nickname.length == 0) {
+      return showMessage("昵称不能为空!", req.session.user);
     }
-
-    User.getUserById(req.session.user._id, ep.done(function (user) {
-      user.url = url;
-      if (!user.nickname) {
-        user.nickname = nickname;
+    User.getUserByNickname({nickname: nickname}, function(user) {
+      if (user) {
+        return showMessage("昵称已经存在，请换一个昵称！", req.session.user);
+      } else {
+        User.getUserById(req.session.user._id, ep.done(function (user) {
+          user.url = url;
+          user.nickname = nickname;
+          user.avatar = avatar;
+          user.location = location;
+          user.signature = signature;
+          user.weibo = weibo;
+          user.save(function (err) {
+            if (err) {
+              return next(err);
+            }
+            req.session.user = user.toObject({virtual: true});
+            return res.redirect('/setting?save=success');
+          });
+        }));
       }
-      user.avatar = avatar;
-      user.location = location;
-      user.signature = signature;
-      user.weibo = weibo;
-      user.save(function (err) {
-        if (err) {
-          return next(err);
-        }
-        req.session.user = user.toObject({virtual: true});
-        return res.redirect('/setting?save=success');
-      });
-    }));
+    });
   }
   if (action === 'change_password') {
     var old_pass = validator.trim(req.body.old_pass);
